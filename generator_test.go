@@ -1,15 +1,21 @@
 package driverlicense_test
 
-import "github.com/stretchr/testify/suite"
+import (
+	"testing"
 
-func (s *DrivingLicenseSuite)TestUnderageApplication(){
+	driverlicense "module"
+
+	"github.com/stretchr/testify/suite"
+)
+
+func (s *DrivingLicenseSuite) TestUnderageApplication() {
 	a := UnderageApplication{}
 
-	generatorNuber := driverlicense.NewNumberGenerator()
-	_, err := generatorNuber.Generate(a)
-	if err != nil{
-		log.err(err)
-	}
+	lg := driverlicense.NewNumberGenerator()
+	_, err := lg.Generate(a)
+	s.Error(err)
+	s.Contains(err.Error(), "Underaged")
+
 }
 
 type DrivingLicenseSuite struct {
@@ -20,15 +26,19 @@ func TestDrivingLicenseSuite(t *testing.T) {
 	suite.Run(t, new(DrivingLicenseSuite))
 }
 
-type UnderageApplication struct{
-	driverlicense.Applicant{}
+type UnderageApplication struct{}
+
+func (u UnderageApplication) IsOver17() bool {
+	return false
 }
 
-type (u UnderageApplication) IsOver17()bool{
+func (u UnderageApplication) HoldLicense() bool {
 	return false
-	
 }
 
-type (u UnderageApplication) HoldLicense()bool{
-	return false
+func (s *DrivingLicenseSuite) TestNoSecondLicense() {
+
+}
+
+type LicenseHolderApplicat struct {
 }
