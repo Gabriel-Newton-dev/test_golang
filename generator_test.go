@@ -40,5 +40,13 @@ func (s *DrivingLicenseSuite) TestNoSecondLicense() {
 
 }
 
-type LicenseHolderApplicat struct {
+type LicenseHolderApplicant struct {
+}
+
+func (l LicenseHolderApplicant) IsOver17() bool {
+	return true
+}
+
+func (l LicenseHolderApplicant) HoldLicense() bool {
+	return true
 }
