@@ -7,3 +7,5 @@ type Car struct {
 	Value float64
 	Turbo bool
 }
+
+var Cars []Car

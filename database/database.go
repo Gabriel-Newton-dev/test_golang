@@ -1,18 +1,22 @@
 package database
 
 import (
+	"fmt"
 	"log"
 
+	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 func ConnectDatabase() {
 
-	dsn := "user:pass@tcp(127.0.0.1:3306)/ dbname?charset=utf8mb4&parseTime=True&loc=Local"
-	_, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	dbName := viper.Get("DB_NAME")
+	dbPassword := viper.Get("DB_PASSWORD")
+	dbUser := viper.Get("DB_USER")
+	connection := fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ %s?charset=utf8mb4&parseTime=True&loc=Local", dbUser, dbPassword, dbName)
+	_, err := gorm.Open(mysql.Open(connection), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Erro ao se conectar no banco de dados", err)
 	}
-
 }
