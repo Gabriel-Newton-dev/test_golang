@@ -5,6 +5,14 @@ go 1.18
 require github.com/spf13/viper v1.15.0
 
 require (
+	github.com/jackc/pgpassfile v1.0.0 // indirect
+	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
+	github.com/jackc/pgx/v5 v5.2.0 // indirect
+	gorm.io/driver/postgres v1.4.6 // indirect
+)
+
+require (
+	github.com/Gabriel-Newton-dev/API_Rest_Golang v0.0.0-20230408234833-9df2329b88f9
 	github.com/bytedance/sonic v1.8.7 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
