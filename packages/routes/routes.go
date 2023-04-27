@@ -8,5 +8,9 @@ import (
 func HandleRequest() {
 	r := gin.Default()
 	r.GET("/healthcheck", controllers.Healthcheck)
+	r.GET("/cars", controllers.DisplayAllCars)
+	r.GET("/cars/:id", controllers.DisplayCarByID)
+	r.GET("/:name", controllers.Salutation)
+	r.POST("/cars", controllers.CreateCardRegister)
 	r.Run()
 }
