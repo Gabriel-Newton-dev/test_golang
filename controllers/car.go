@@ -28,5 +28,17 @@ func DisplayCarByID(c *gin.Context) {
 
 func Salutation(c *gin.Context) {
 	name := c.Params.ByName("name")
-	c.JSON(http.StatusOK, gin.H{"API says": "Welcome" + name + "to our API."})
+	c.JSON(http.StatusOK, gin.H{"API says": "Welcome " + name + " to our API."})
+}
+
+func CreateCardRegister(c *gin.Context) {
+	var car models.Car
+	if err := c.ShouldBindJSON(&car); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Error": err.Error(),
+		})
+	}
+	database.DB.Create(&models.Cars)
+	c.JSON(http.StatusOK, car)
+
 }
